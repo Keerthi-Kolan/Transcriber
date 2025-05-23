@@ -1,0 +1,13 @@
+{
+  "resourceName": "s313901467",
+  "policyUUID": "13901467",
+  "bucketName": "transcribeaudio",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "groupAccess": {}
+}

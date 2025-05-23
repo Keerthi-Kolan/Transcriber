@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/transcribe": {
+      "name": "/transcribe",
+      "lambdaFunction": "startTranscription",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

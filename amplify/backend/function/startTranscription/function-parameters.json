@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "storage": {
+      "s313901467": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
