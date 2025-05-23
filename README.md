@@ -1,70 +1,120 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Transcription App
 
-## Available Scripts
+A full-stack React + AWS Amplify application that enables authenticated users to upload audio files and receive real-time transcriptions using Amazon Transcribe.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Secure user authentication using AWS Cognito
+- Audio file uploads to Amazon S3 via Amplify Storage
+- Transcription jobs triggered via API Gateway → Lambda → Amazon Transcribe
+- Real-time transcript fetch and display in UI
+- Modular React app with Amplify integration
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- React
+- AWS Amplify (Auth, Storage, API)
+- React Hooks
 
-### `npm run build`
+### Backend
+- AWS Lambda
+- Amazon API Gateway
+- Amazon Transcribe
+- Amazon S3
+- AWS Cognito
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation & Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
+- Node.js v16+
+- AWS CLI (configured)
+- Amplify CLI
 
-### `npm run eject`
+### Setup Instructions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Install Amplify CLI if not already installed
+npm install -g @aws-amplify/cli
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Clone the repository
+git clone https://github.com/Keerthi-Kolan/Transcriber.git
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Install frontend dependencies
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Initialize Amplify
+amplify init
 
-## Learn More
+# Add backend resources
+amplify add auth
+amplify add storage
+amplify add function
+amplify add api
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Deploy to AWS
+amplify push
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Run your React app:
+   ```bash
+   npm start
+   ```
 
-### Analyzing the Bundle Size
+2. Sign up / log in using Cognito Auth
+3. Upload an audio file (`.mp3`, `.wav`, `.flac`)
+4. Click **Transcribe**
+5. The transcript will appear under the audio player once the job is complete
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## System Architecture
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+[User] → [React Frontend (Amplify)]
+           ├──> [Amplify Auth (Cognito)] – for login/signup
+           ├──> [Amplify Storage (S3)] – to upload audio
+           ├──> [Amplify API (API Gateway)] – to trigger backend
+                   └──> [Lambda Function (startTranscription)]
+                            ├──> [Amazon Transcribe] – converts audio to text
+           └──> [Transcript Response] – shown in frontend
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Project Highlights
 
-### Deployment
+- Built with 6 AWS services
+- Real-time speech-to-text conversion
+- Fully serverless and scalable
+- 100% authenticated access for all features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Security
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- User authentication handled by Cognito
+- Audio files stored with `protected` access in S3
+- CORS properly configured on API Gateway
+- IAM roles restrict access to Lambda and storage
+
+---
+
+
+## Acknowledgments
+
+Thanks to:
+- [AWS Amplify Docs](https://docs.amplify.aws)
+- [Amazon Transcribe Docs](https://docs.aws.amazon.com/transcribe/)
+- [React](https://reactjs.org)
