@@ -1,5 +1,5 @@
 
-# Transcription App
+# SCALABLE MEDIA TRANSCRIPTION SYSTEM WITH SERVERLESS CLOUD ARCHITECTURE
 
 A full-stack React + AWS Amplify application that enables authenticated users to upload audio files and receive real-time transcriptions using Amazon Transcribe.
 
